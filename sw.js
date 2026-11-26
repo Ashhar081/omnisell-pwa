@@ -1,4 +1,4 @@
-const CACHE_NAME = "omnisell-pwa-v2";
+const CACHE_NAME = "omnisell-pwa-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -36,15 +36,14 @@ self.addEventListener("fetch", (event) => {
     return;
   }
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request).then((res) => {
+    fetch(event.request)
+      .then((res) => {
         if (event.request.method === "GET" && res.status === 200) {
           const copy = res.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
         }
         return res;
-      }).catch(() => caches.match("./index.html"));
-    })
+      })
+      .catch(() => caches.match(event.request).then((cached) => cached || caches.match("./index.html")))
   );
 });

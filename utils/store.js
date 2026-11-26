@@ -1,6 +1,6 @@
 import { GLOBAL_PLATFORMS, FX_TO_INR, CURRENCY_SYMBOL } from "../data/platforms.js";
 
-const STORAGE_KEY = "omnisell_pwa_state_v2";
+const STORAGE_KEY = "omnisell_pwa_state_v3";
 
 function buildDefaultState() {
   const ordersByStore = {};
@@ -10,7 +10,6 @@ function buildDefaultState() {
     ordersByStore[p.id] = [];
     storeMeta[p.id] = {
       nickname: p.name,
-      syncMethod: p.integrationMode === "free_api" ? "Free API / CSV" : "CSV Report",
       lastSyncedAt: null
     };
   }
@@ -20,14 +19,15 @@ function buildDefaultState() {
     ordersByStore,
     storeMeta,
     apiConfigs: {
-      ebay: { appId: "", accessToken: "", marketplace: "EBAY_US", status: "Not connected" },
-      flipkart: { appId: "", appSecret: "", accessToken: "", status: "Not connected" }
+      ebay: { appId: "", accessToken: "", marketplace: "EBAY_US" },
+      flipkart: { appId: "", appSecret: "", accessToken: "" }
     },
     prefs: {
       theme: "system",
       displayCurrency: "INR",
       timeframe: "today",
-      selectedStoreId: null
+      selectedStoreId: null,
+      tapBehavior: "details"
     }
   };
 }
@@ -72,8 +72,7 @@ export function loadSampleDemoWorkspace(state) {
     if (!state.connectedIds.includes(id)) state.connectedIds.push(id);
     state.ordersByStore[id] = p.seedOrders.map((o) => ({ ...o }));
     state.storeMeta[id] = {
-      nickname: `${p.name} (Demo)`,
-      syncMethod: p.apiLabel,
+      nickname: p.name,
       lastSyncedAt: new Date().toISOString()
     };
   }
