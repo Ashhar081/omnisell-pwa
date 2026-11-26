@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#007AFF" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="OmniSell" />
+  <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <title>OmniSell — Global Seller Hub</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <div class="brand">
+        <div class="brand-icon">OS</div>
+        <div>
+          <div class="brand-title">OmniSell</div>
+          <div class="brand-sub">100% Free Global Seller Hub</div>
+        </div>
+      </div>
+
+      <div class="top-controls">
+        <div class="segmented" id="timeframeSegmented">
+          <button data-tf="today" class="active">Today</button>
+          <button data-tf="7d">7 Days</button>
+          <button data-tf="30d">30 Days</button>
+        </div>
+
+        <select id="currencySelect" class="select-pill" aria-label="Display Currency">
+          <option value="INR">INR (₹)</option>
+          <option value="USD">USD ($)</option>
+          <option value="CAD">CAD (C$)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="EUR">EUR (€)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <nav class="desktop-tabs" id="desktopTabs" aria-label="Main Navigation">
+    <button class="desktop-tab-btn active" data-tab="dashboard">My Stores</button>
+    <button class="desktop-tab-btn" data-tab="store">Store Details</button>
+    <button class="desktop-tab-btn" data-tab="directory">All Marketplaces</button>
+    <button class="desktop-tab-btn" data-tab="sync">CSV, Free API & Settings</button>
+  </nav>
+
+  <main id="appMain" class="app-main"></main>
+
+  <nav class="bottom-tab-bar" id="mobileTabs" aria-label="Mobile Navigation">
+    <button class="tab-item active" data-tab="dashboard">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/></svg>
+      <span>Stores</span>
+    </button>
+    <button class="tab-item" data-tab="store">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Details</span>
+    </button>
+    <button class="tab-item" data-tab="directory">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span>Marketplaces</span>
+    </button>
+    <button class="tab-item" data-tab="sync">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+      <span>Sync & CSV</span>
+    </button>
+  </nav>
+
+  <div id="sheetBackdrop" class="sheet-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="sheet-panel" id="sheetPanel"></div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
